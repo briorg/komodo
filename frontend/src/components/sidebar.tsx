@@ -1,10 +1,11 @@
-import { RESOURCE_TARGETS, cn, usableResourcePath } from "@lib/utils";
+import { SIDEBAR_RESOURCES, cn, usableResourcePath } from "@lib/utils";
 import { Button } from "@ui/button";
 import {
   AlertTriangle,
   Bell,
   Box,
   Boxes,
+  CalendarDays,
   LayoutDashboard,
   Settings,
 } from "lucide-react";
@@ -43,7 +44,7 @@ export const Sidebar = () => {
         <Separator className="my-3" />
 
         <p className="pl-4 pb-1 text-xs text-muted-foreground">Resources</p>
-        {RESOURCE_TARGETS.map((type) => {
+        {SIDEBAR_RESOURCES.map((type) => {
           const RTIcon = ResourceComponents[type].Icon;
           const name = type === "ResourceSync" ? "Sync" : type;
           return (
@@ -55,6 +56,7 @@ export const Sidebar = () => {
             />
           );
         })}
+
         <Separator className="my-3" />
 
         <p className="pl-4 pb-1 text-xs text-muted-foreground">Notifications</p>
@@ -68,7 +70,14 @@ export const Sidebar = () => {
           to="/updates"
           icon={<Bell className="w-4 h-4" />}
         />
+        
         <Separator className="my-3" />
+
+        <SidebarLink
+          label="Schedules"
+          to="/schedules"
+          icon={<CalendarDays className="w-4 h-4" />}
+        />
 
         <SidebarLink
           label="Settings"

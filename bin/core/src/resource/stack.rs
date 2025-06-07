@@ -25,7 +25,7 @@ use resolver_api::Resolve;
 use crate::{
   api::write::WriteArgs,
   config::core_config,
-  helpers::{periphery_client, query::get_stack_state},
+  helpers::{periphery_client, query::get_stack_state, repo_link},
   monitor::update_cache_for_server,
   state::{
     action_states, db_client, server_status_cache, stack_status_cache,
@@ -79,8 +79,20 @@ impl super::KomodoResource for Stack {
     stack: Resource<Self::Config, Self::Info>,
   ) -> Self::ListItem {
     let status = stack_status_cache().get(&stack.id).await;
-    let state =
-      status.as_ref().map(|s| s.curr.state).unwrap_or_default();
+    let state = if action_states()
+      .stack
+      .get(&stack.id)
+      .await
+      .map(|s| s.get().map(|s| s.deploying))
+      .transpose()
+      .ok()
+      .flatten()
+      .unwrap_or_default()
+    {
+      StackState::Deploying
+    } else {
+      status.as_ref().map(|s| s.curr.state).unwrap_or_default()
+    };
     let project_name = stack.project_name(false);
     let services = status
       .as_ref()
@@ -139,6 +151,12 @@ impl super::KomodoResource for Stack {
         server_id: stack.config.server_id,
         missing_files: stack.info.missing_files,
         files_on_host: stack.config.files_on_host,
+        repo_link: repo_link(
+          &stack.config.git_provider,
+          &stack.config.repo,
+          &stack.config.branch,
+          stack.config.git_https,
+        ),
         git_provider: stack.config.git_provider,
         repo: stack.config.repo,
         branch: stack.config.branch,

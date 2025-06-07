@@ -18,6 +18,7 @@ import {
   Copy,
   Database,
   Edit2,
+  FolderGit,
   HardDrive,
   Loader2,
   LogOut,
@@ -140,6 +141,7 @@ export const ActionWithDialog = ({
   additional,
   targetClassName,
   variant,
+  forceConfirmDialog,
 }: {
   name: string;
   title: string;
@@ -158,13 +160,18 @@ export const ActionWithDialog = ({
     | "ghost"
     | null
     | undefined;
+  /**
+   * For some ops (Delete), force confirm dialog
+   * even if disabled.
+   */
+  forceConfirmDialog?: boolean;
 }) => {
   const disable_confirm_dialog =
     useRead("GetCoreInfo", {}).data?.disable_confirm_dialog ?? false;
   const [open, setOpen] = useState(false);
   const [input, setInput] = useState("");
 
-  if (disable_confirm_dialog) {
+  if (!forceConfirmDialog && disable_confirm_dialog) {
     return (
       <ConfirmButton
         variant={variant}
@@ -1077,5 +1084,20 @@ export const NotFound = ({ type }: { type: UsableResource | undefined }) => {
         </div>
       </div>
     </div>
+  );
+};
+
+export const RepoLink = ({ repo, link }: { repo: string; link: string }) => {
+  return (
+    <a
+      target="_blank"
+      href={link}
+      className="text-sm cursor-pointer hover:underline"
+    >
+      <div className="flex items-center gap-2">
+        <FolderGit className="w-4 h-4" />
+        {repo}
+      </div>
+    </a>
   );
 };

@@ -36,142 +36,6 @@ export var TagBehavior;
     /** Returns resources which have one or more of the tags */
     TagBehavior["Any"] = "Any";
 })(TagBehavior || (TagBehavior = {}));
-export var BuildState;
-(function (BuildState) {
-    /** Last build successful (or never built) */
-    BuildState["Ok"] = "Ok";
-    /** Last build failed */
-    BuildState["Failed"] = "Failed";
-    /** Currently building */
-    BuildState["Building"] = "Building";
-    /** Other case */
-    BuildState["Unknown"] = "Unknown";
-})(BuildState || (BuildState = {}));
-export var RestartMode;
-(function (RestartMode) {
-    RestartMode["NoRestart"] = "no";
-    RestartMode["OnFailure"] = "on-failure";
-    RestartMode["Always"] = "always";
-    RestartMode["UnlessStopped"] = "unless-stopped";
-})(RestartMode || (RestartMode = {}));
-export var TerminationSignal;
-(function (TerminationSignal) {
-    TerminationSignal["SigHup"] = "SIGHUP";
-    TerminationSignal["SigInt"] = "SIGINT";
-    TerminationSignal["SigQuit"] = "SIGQUIT";
-    TerminationSignal["SigTerm"] = "SIGTERM";
-})(TerminationSignal || (TerminationSignal = {}));
-/**
- * Variants de/serialized from/to snake_case.
- *
- * Eg.
- * - NotDeployed -> not_deployed
- * - Restarting -> restarting
- * - Running -> running.
- */
-export var DeploymentState;
-(function (DeploymentState) {
-    DeploymentState["Unknown"] = "unknown";
-    DeploymentState["NotDeployed"] = "not_deployed";
-    DeploymentState["Created"] = "created";
-    DeploymentState["Restarting"] = "restarting";
-    DeploymentState["Running"] = "running";
-    DeploymentState["Removing"] = "removing";
-    DeploymentState["Paused"] = "paused";
-    DeploymentState["Exited"] = "exited";
-    DeploymentState["Dead"] = "dead";
-})(DeploymentState || (DeploymentState = {}));
-/** Severity level of problem. */
-export var SeverityLevel;
-(function (SeverityLevel) {
-    /** No problem. */
-    SeverityLevel["Ok"] = "OK";
-    /** Problem is imminent. */
-    SeverityLevel["Warning"] = "WARNING";
-    /** Problem fully realized. */
-    SeverityLevel["Critical"] = "CRITICAL";
-})(SeverityLevel || (SeverityLevel = {}));
-export var Timelength;
-(function (Timelength) {
-    Timelength["OneSecond"] = "1-sec";
-    Timelength["FiveSeconds"] = "5-sec";
-    Timelength["TenSeconds"] = "10-sec";
-    Timelength["FifteenSeconds"] = "15-sec";
-    Timelength["ThirtySeconds"] = "30-sec";
-    Timelength["OneMinute"] = "1-min";
-    Timelength["TwoMinutes"] = "2-min";
-    Timelength["FiveMinutes"] = "5-min";
-    Timelength["TenMinutes"] = "10-min";
-    Timelength["FifteenMinutes"] = "15-min";
-    Timelength["ThirtyMinutes"] = "30-min";
-    Timelength["OneHour"] = "1-hr";
-    Timelength["TwoHours"] = "2-hr";
-    Timelength["SixHours"] = "6-hr";
-    Timelength["EightHours"] = "8-hr";
-    Timelength["TwelveHours"] = "12-hr";
-    Timelength["OneDay"] = "1-day";
-    Timelength["ThreeDay"] = "3-day";
-    Timelength["OneWeek"] = "1-wk";
-    Timelength["TwoWeeks"] = "2-wk";
-    Timelength["ThirtyDays"] = "30-day";
-})(Timelength || (Timelength = {}));
-export var TagColor;
-(function (TagColor) {
-    TagColor["LightSlate"] = "LightSlate";
-    TagColor["Slate"] = "Slate";
-    TagColor["DarkSlate"] = "DarkSlate";
-    TagColor["LightRed"] = "LightRed";
-    TagColor["Red"] = "Red";
-    TagColor["DarkRed"] = "DarkRed";
-    TagColor["LightOrange"] = "LightOrange";
-    TagColor["Orange"] = "Orange";
-    TagColor["DarkOrange"] = "DarkOrange";
-    TagColor["LightAmber"] = "LightAmber";
-    TagColor["Amber"] = "Amber";
-    TagColor["DarkAmber"] = "DarkAmber";
-    TagColor["LightYellow"] = "LightYellow";
-    TagColor["Yellow"] = "Yellow";
-    TagColor["DarkYellow"] = "DarkYellow";
-    TagColor["LightLime"] = "LightLime";
-    TagColor["Lime"] = "Lime";
-    TagColor["DarkLime"] = "DarkLime";
-    TagColor["LightGreen"] = "LightGreen";
-    TagColor["Green"] = "Green";
-    TagColor["DarkGreen"] = "DarkGreen";
-    TagColor["LightEmerald"] = "LightEmerald";
-    TagColor["Emerald"] = "Emerald";
-    TagColor["DarkEmerald"] = "DarkEmerald";
-    TagColor["LightTeal"] = "LightTeal";
-    TagColor["Teal"] = "Teal";
-    TagColor["DarkTeal"] = "DarkTeal";
-    TagColor["LightCyan"] = "LightCyan";
-    TagColor["Cyan"] = "Cyan";
-    TagColor["DarkCyan"] = "DarkCyan";
-    TagColor["LightSky"] = "LightSky";
-    TagColor["Sky"] = "Sky";
-    TagColor["DarkSky"] = "DarkSky";
-    TagColor["LightBlue"] = "LightBlue";
-    TagColor["Blue"] = "Blue";
-    TagColor["DarkBlue"] = "DarkBlue";
-    TagColor["LightIndigo"] = "LightIndigo";
-    TagColor["Indigo"] = "Indigo";
-    TagColor["DarkIndigo"] = "DarkIndigo";
-    TagColor["LightViolet"] = "LightViolet";
-    TagColor["Violet"] = "Violet";
-    TagColor["DarkViolet"] = "DarkViolet";
-    TagColor["LightPurple"] = "LightPurple";
-    TagColor["Purple"] = "Purple";
-    TagColor["DarkPurple"] = "DarkPurple";
-    TagColor["LightFuchsia"] = "LightFuchsia";
-    TagColor["Fuchsia"] = "Fuchsia";
-    TagColor["DarkFuchsia"] = "DarkFuchsia";
-    TagColor["LightPink"] = "LightPink";
-    TagColor["Pink"] = "Pink";
-    TagColor["DarkPink"] = "DarkPink";
-    TagColor["LightRose"] = "LightRose";
-    TagColor["Rose"] = "Rose";
-    TagColor["DarkRose"] = "DarkRose";
-})(TagColor || (TagColor = {}));
 export var Operation;
 (function (Operation) {
     Operation["None"] = "None";
@@ -296,6 +160,153 @@ export var UpdateStatus;
     /** The run is complete */
     UpdateStatus["Complete"] = "Complete";
 })(UpdateStatus || (UpdateStatus = {}));
+export var BuildState;
+(function (BuildState) {
+    /** Last build successful (or never built) */
+    BuildState["Ok"] = "Ok";
+    /** Last build failed */
+    BuildState["Failed"] = "Failed";
+    /** Currently building */
+    BuildState["Building"] = "Building";
+    /** Other case */
+    BuildState["Unknown"] = "Unknown";
+})(BuildState || (BuildState = {}));
+export var RestartMode;
+(function (RestartMode) {
+    RestartMode["NoRestart"] = "no";
+    RestartMode["OnFailure"] = "on-failure";
+    RestartMode["Always"] = "always";
+    RestartMode["UnlessStopped"] = "unless-stopped";
+})(RestartMode || (RestartMode = {}));
+export var TerminationSignal;
+(function (TerminationSignal) {
+    TerminationSignal["SigHup"] = "SIGHUP";
+    TerminationSignal["SigInt"] = "SIGINT";
+    TerminationSignal["SigQuit"] = "SIGQUIT";
+    TerminationSignal["SigTerm"] = "SIGTERM";
+})(TerminationSignal || (TerminationSignal = {}));
+/**
+ * Variants de/serialized from/to snake_case.
+ *
+ * Eg.
+ * - NotDeployed -> not_deployed
+ * - Restarting -> restarting
+ * - Running -> running.
+ */
+export var DeploymentState;
+(function (DeploymentState) {
+    /** The deployment is currently re/deploying */
+    DeploymentState["Deploying"] = "deploying";
+    /** Container is running */
+    DeploymentState["Running"] = "running";
+    /** Container is created but not running */
+    DeploymentState["Created"] = "created";
+    /** Container is in restart loop */
+    DeploymentState["Restarting"] = "restarting";
+    /** Container is being removed */
+    DeploymentState["Removing"] = "removing";
+    /** Container is paused */
+    DeploymentState["Paused"] = "paused";
+    /** Container is exited */
+    DeploymentState["Exited"] = "exited";
+    /** Container is dead */
+    DeploymentState["Dead"] = "dead";
+    /** The deployment is not deployed (no matching container) */
+    DeploymentState["NotDeployed"] = "not_deployed";
+    /** Server not reachable for status */
+    DeploymentState["Unknown"] = "unknown";
+})(DeploymentState || (DeploymentState = {}));
+/** Severity level of problem. */
+export var SeverityLevel;
+(function (SeverityLevel) {
+    /** No problem. */
+    SeverityLevel["Ok"] = "OK";
+    /** Problem is imminent. */
+    SeverityLevel["Warning"] = "WARNING";
+    /** Problem fully realized. */
+    SeverityLevel["Critical"] = "CRITICAL";
+})(SeverityLevel || (SeverityLevel = {}));
+export var Timelength;
+(function (Timelength) {
+    Timelength["OneSecond"] = "1-sec";
+    Timelength["FiveSeconds"] = "5-sec";
+    Timelength["TenSeconds"] = "10-sec";
+    Timelength["FifteenSeconds"] = "15-sec";
+    Timelength["ThirtySeconds"] = "30-sec";
+    Timelength["OneMinute"] = "1-min";
+    Timelength["TwoMinutes"] = "2-min";
+    Timelength["FiveMinutes"] = "5-min";
+    Timelength["TenMinutes"] = "10-min";
+    Timelength["FifteenMinutes"] = "15-min";
+    Timelength["ThirtyMinutes"] = "30-min";
+    Timelength["OneHour"] = "1-hr";
+    Timelength["TwoHours"] = "2-hr";
+    Timelength["SixHours"] = "6-hr";
+    Timelength["EightHours"] = "8-hr";
+    Timelength["TwelveHours"] = "12-hr";
+    Timelength["OneDay"] = "1-day";
+    Timelength["ThreeDay"] = "3-day";
+    Timelength["OneWeek"] = "1-wk";
+    Timelength["TwoWeeks"] = "2-wk";
+    Timelength["ThirtyDays"] = "30-day";
+})(Timelength || (Timelength = {}));
+export var TagColor;
+(function (TagColor) {
+    TagColor["LightSlate"] = "LightSlate";
+    TagColor["Slate"] = "Slate";
+    TagColor["DarkSlate"] = "DarkSlate";
+    TagColor["LightRed"] = "LightRed";
+    TagColor["Red"] = "Red";
+    TagColor["DarkRed"] = "DarkRed";
+    TagColor["LightOrange"] = "LightOrange";
+    TagColor["Orange"] = "Orange";
+    TagColor["DarkOrange"] = "DarkOrange";
+    TagColor["LightAmber"] = "LightAmber";
+    TagColor["Amber"] = "Amber";
+    TagColor["DarkAmber"] = "DarkAmber";
+    TagColor["LightYellow"] = "LightYellow";
+    TagColor["Yellow"] = "Yellow";
+    TagColor["DarkYellow"] = "DarkYellow";
+    TagColor["LightLime"] = "LightLime";
+    TagColor["Lime"] = "Lime";
+    TagColor["DarkLime"] = "DarkLime";
+    TagColor["LightGreen"] = "LightGreen";
+    TagColor["Green"] = "Green";
+    TagColor["DarkGreen"] = "DarkGreen";
+    TagColor["LightEmerald"] = "LightEmerald";
+    TagColor["Emerald"] = "Emerald";
+    TagColor["DarkEmerald"] = "DarkEmerald";
+    TagColor["LightTeal"] = "LightTeal";
+    TagColor["Teal"] = "Teal";
+    TagColor["DarkTeal"] = "DarkTeal";
+    TagColor["LightCyan"] = "LightCyan";
+    TagColor["Cyan"] = "Cyan";
+    TagColor["DarkCyan"] = "DarkCyan";
+    TagColor["LightSky"] = "LightSky";
+    TagColor["Sky"] = "Sky";
+    TagColor["DarkSky"] = "DarkSky";
+    TagColor["LightBlue"] = "LightBlue";
+    TagColor["Blue"] = "Blue";
+    TagColor["DarkBlue"] = "DarkBlue";
+    TagColor["LightIndigo"] = "LightIndigo";
+    TagColor["Indigo"] = "Indigo";
+    TagColor["DarkIndigo"] = "DarkIndigo";
+    TagColor["LightViolet"] = "LightViolet";
+    TagColor["Violet"] = "Violet";
+    TagColor["DarkViolet"] = "DarkViolet";
+    TagColor["LightPurple"] = "LightPurple";
+    TagColor["Purple"] = "Purple";
+    TagColor["DarkPurple"] = "DarkPurple";
+    TagColor["LightFuchsia"] = "LightFuchsia";
+    TagColor["Fuchsia"] = "Fuchsia";
+    TagColor["DarkFuchsia"] = "DarkFuchsia";
+    TagColor["LightPink"] = "LightPink";
+    TagColor["Pink"] = "Pink";
+    TagColor["DarkPink"] = "DarkPink";
+    TagColor["LightRose"] = "LightRose";
+    TagColor["Rose"] = "Rose";
+    TagColor["DarkRose"] = "DarkRose";
+})(TagColor || (TagColor = {}));
 export var ContainerStateStatusEnum;
 (function (ContainerStateStatusEnum) {
     ContainerStateStatusEnum["Empty"] = "";
@@ -441,6 +452,8 @@ export var ServerState;
 })(ServerState || (ServerState = {}));
 export var StackState;
 (function (StackState) {
+    /** The stack is currently re/deploying */
+    StackState["Deploying"] = "deploying";
     /** All containers are running. */
     StackState["Running"] = "running";
     /** All containers are paused */
@@ -459,7 +472,7 @@ export var StackState;
     StackState["Unhealthy"] = "unhealthy";
     /** The stack is not deployed */
     StackState["Down"] = "down";
-    /** Server not reachable */
+    /** Server not reachable for status */
     StackState["Unknown"] = "unknown";
 })(StackState || (StackState = {}));
 export var RepoWebhookAction;
@@ -527,9 +540,9 @@ export var SpecificPermission;
     SpecificPermission["Attach"] = "Attach";
     /**
      * On **Server**
-     * - Access the `docker inspect` apis
+     * - Access the `container inspect` apis
      * On **Stack / Deployment**
-     * - Access `docker inspect $container` for associated containers
+     * - Access `container inspect` apis for associated containers
      */
     SpecificPermission["Inspect"] = "Inspect";
     /**

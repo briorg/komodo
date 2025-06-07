@@ -34,14 +34,11 @@ impl Stack {
         return project_name.clone();
       }
     }
-    self
-      .config
-      .project_name
-      .is_empty()
-      .then(|| to_docker_compatible_name(&self.name))
-      .unwrap_or_else(|| {
-        to_docker_compatible_name(&self.config.project_name)
-      })
+    if self.config.project_name.is_empty() {
+      to_docker_compatible_name(&self.name)
+    } else {
+      to_docker_compatible_name(&self.config.project_name)
+    }
   }
 
   pub fn file_paths(&self) -> &[String] {
@@ -77,6 +74,8 @@ pub struct StackListItemInfo {
   pub repo: String,
   /// The configured branch
   pub branch: String,
+  /// Full link to the repo.
+  pub repo_link: String,
   /// The stack state
   pub state: StackState,
   /// A string given by docker conveying the status of the stack.
@@ -125,6 +124,8 @@ pub struct StackServiceWithUpdate {
 #[serde(rename_all = "snake_case")]
 #[strum(serialize_all = "snake_case")]
 pub enum StackState {
+  /// The stack is currently re/deploying
+  Deploying,
   /// All containers are running.
   Running,
   /// All containers are paused
@@ -143,7 +144,7 @@ pub enum StackState {
   Unhealthy,
   /// The stack is not deployed
   Down,
-  /// Server not reachable
+  /// Server not reachable for status
   #[default]
   Unknown,
 }

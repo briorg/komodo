@@ -1,6 +1,6 @@
 import { useRead, useSelectedResources } from "@lib/hooks";
 import { DataTable, SortableHeader } from "@ui/data-table";
-import { ResourceLink } from "../common";
+import { ResourceLink, StandardSource } from "../common";
 import { TableTags } from "@components/tags";
 import { StackComponents, UpdateAvailable } from ".";
 import { Types } from "komodo_client";
@@ -25,10 +25,10 @@ export const StackTable = ({ stacks }: { stacks: Types.StackListItem[] }) => {
       }}
       columns={[
         {
-          accessorKey: "name",
           header: ({ column }) => (
             <SortableHeader column={column} title="Name" />
           ),
+          accessorKey: "name",
           cell: ({ row }) => {
             return (
               <div className="flex items-center justify-between gap-2">
@@ -40,25 +40,33 @@ export const StackTable = ({ stacks }: { stacks: Types.StackListItem[] }) => {
           size: 200,
         },
         {
+          header: ({ column }) => (
+            <SortableHeader column={column} title="Server" />
+          ),
           accessorKey: "info.server_id",
           sortingFn: (a, b) => {
             const sa = serverName(a.original.info.server_id);
             const sb = serverName(b.original.info.server_id);
 
             if (!sa && !sb) return 0;
-            if (!sa) return -1;
-            if (!sb) return 1;
+            if (!sa) return 1;
+            if (!sb) return -1;
 
             if (sa > sb) return 1;
             else if (sa < sb) return -1;
             else return 0;
           },
-          header: ({ column }) => (
-            <SortableHeader column={column} title="Server" />
-          ),
           cell: ({ row }) => (
             <ResourceLink type="Server" id={row.original.info.server_id} />
           ),
+          size: 200,
+        },
+        {
+          header: ({ column }) => (
+            <SortableHeader column={column} title="Source" />
+          ),
+          accessorKey: "info.repo",
+          cell: ({ row }) => <StandardSource info={row.original.info} />,
           size: 200,
         },
         {

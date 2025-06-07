@@ -130,9 +130,9 @@ export const soft_text_color_class_by_intention = (
 };
 
 export const server_state_intention: (
-  status?: Types.ServerState
-) => ColorIntention = (status) => {
-  switch (status) {
+  state?: Types.ServerState
+) => ColorIntention = (state) => {
+  switch (state) {
     case Types.ServerState.Ok:
       return "Good";
     case Types.ServerState.NotOk:
@@ -150,6 +150,8 @@ export const deployment_state_intention: (
   switch (state) {
     case undefined:
       return "None";
+    case Types.DeploymentState.Deploying:
+      return "Warning";
     case Types.DeploymentState.Running:
       return "Good";
     case Types.DeploymentState.NotDeployed:
@@ -222,6 +224,8 @@ export const stack_state_intention = (state?: Types.StackState) => {
   switch (state) {
     case undefined:
       return "None";
+    case Types.StackState.Deploying:
+      return "Warning";
     case Types.StackState.Running:
       return "Good";
     case Types.StackState.Paused:

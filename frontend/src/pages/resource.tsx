@@ -13,7 +13,7 @@ import {
   useResourceParamType,
   useSetTitle,
 } from "@lib/hooks";
-import { usableResourcePath } from "@lib/utils";
+import { SETTINGS_RESOURCES, usableResourcePath } from "@lib/utils";
 import { Types } from "komodo_client";
 import { UsableResource } from "@types";
 import { Button } from "@ui/button";
@@ -22,14 +22,14 @@ import { Link, useParams } from "react-router-dom";
 import { ResourceNotifications } from "./resource-notifications";
 import { NotFound } from "@components/util";
 
-export const Resource = () => {
+export default function Resource() {
   const type = useResourceParamType()!;
   const id = useParams().id as string;
 
   if (!type || !id) return null;
 
   return <ResourceInner type={type} id={id} />;
-};
+}
 
 const ResourceInner = ({ type, id }: { type: UsableResource; id: string }) => {
   const resources = useRead(`List${type}s`, {}).data;
@@ -59,7 +59,14 @@ const ResourceInner = ({ type, id }: { type: UsableResource; id: string }) => {
   return (
     <div>
       <div className="w-full flex items-center justify-between mb-12">
-        <Link to={"/" + usableResourcePath(type)}>
+        <Link
+          to={
+            "/" +
+            (SETTINGS_RESOURCES.includes(type)
+              ? "settings"
+              : usableResourcePath(type))
+          }
+        >
           <Button className="gap-2" variant="secondary">
             <ChevronLeft className="w-4" />
             Back
@@ -138,20 +145,24 @@ export const ResourceHeader = ({
           {statusEntries.map(([key, Status]) => (
             <Status key={key} id={id} />
           ))}
-          {links?.map((link) => (
-            <a
-              key={link}
-              target="_blank"
-              href={link}
-              className="flex gap-2 items-center pr-4 text-sm border-r cursor-pointer hover:underline last:pr-0 last:border-none"
-            >
-              <LinkIcon className="w-4" />
-              <div className="max-w-[150px] lg:max-w-[250px] overflow-hidden overflow-ellipsis">
-                {link}
-              </div>
-            </a>
-          ))}
         </div>
+        {links && links.length > 0 && (
+          <div className="flex items-center gap-x-4 gap-y-2 flex-wrap px-4 py-0">
+            {links?.map((link) => (
+              <a
+                key={link}
+                target="_blank"
+                href={link}
+                className="flex gap-2 items-center pr-4 text-sm border-r cursor-pointer hover:underline last:pr-0 last:border-none"
+              >
+                <LinkIcon className="w-4" />
+                <div className="max-w-[150px] lg:max-w-[250px] text-nowrap overflow-hidden overflow-ellipsis">
+                  {link}
+                </div>
+              </a>
+            ))}
+          </div>
+        )}
         <div className="flex items-center gap-2 flex-wrap p-4 pt-0">
           <p className="text-sm text-muted-foreground">Tags:</p>
           <ResourceTags

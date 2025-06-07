@@ -10,7 +10,12 @@ import { RequiredResourceComponents } from "@types";
 import { Factory, FolderGit, Hammer, Loader2, RefreshCcw } from "lucide-react";
 import { BuildConfig } from "./config";
 import { BuildTable } from "./table";
-import { DeleteResource, NewResource, ResourceLink } from "../common";
+import {
+  DeleteResource,
+  NewResource,
+  ResourceLink,
+  StandardSource,
+} from "../common";
 import { DeploymentTable } from "../deployment/table";
 import { RunBuild } from "./actions";
 import {
@@ -158,6 +163,34 @@ export const BuildComponents: RequiredResourceComponents = {
     return <StatusBadge text={state} intent={build_state_intention(state)} />;
   },
 
+  Info: {
+    Builder: ({ id }) => {
+      const info = useBuild(id)?.info;
+      const builder = useBuilder(info?.builder_id);
+      return builder?.id ? (
+        <ResourceLink type="Builder" id={builder?.id} />
+      ) : (
+        <div className="flex gap-2 items-center text-sm">
+          <Factory className="w-4 h-4" />
+          <div>Unknown Builder</div>
+        </div>
+      );
+    },
+    Source: ({ id }) => {
+      const info = useBuild(id)?.info;
+      return <StandardSource info={info} />;
+    },
+    Branch: ({ id }) => {
+      const branch = useBuild(id)?.info.branch;
+      return (
+        <div className="flex items-center gap-2">
+          <FolderGit className="w-4 h-4" />
+          {branch}
+        </div>
+      );
+    },
+  },
+
   Status: {
     Hash: ({ id }) => {
       const info = useFullBuild(id)?.info;
@@ -238,39 +271,6 @@ export const BuildComponents: RequiredResourceComponents = {
             <RefreshCcw className="w-4 h-4" />
           )}
         </Button>
-      );
-    },
-  },
-
-  Info: {
-    Builder: ({ id }) => {
-      const info = useBuild(id)?.info;
-      const builder = useBuilder(info?.builder_id);
-      return builder?.id ? (
-        <ResourceLink type="Builder" id={builder?.id} />
-      ) : (
-        <div className="flex gap-2 items-center text-sm">
-          <Factory className="w-4 h-4" />
-          <div>Unknown Builder</div>
-        </div>
-      );
-    },
-    Repo: ({ id }) => {
-      const repo = useBuild(id)?.info.repo;
-      return (
-        <div className="flex items-center gap-2">
-          <FolderGit className="w-4 h-4" />
-          {repo}
-        </div>
-      );
-    },
-    Branch: ({ id }) => {
-      const branch = useBuild(id)?.info.branch;
-      return (
-        <div className="flex items-center gap-2">
-          <FolderGit className="w-4 h-4" />
-          {branch}
-        </div>
       );
     },
   },
